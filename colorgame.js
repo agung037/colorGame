@@ -81,3 +81,5 @@ function randomColor() {
   var b = Math.floor(Math.random() * 255 + 1);
   return "rgb(" + r + ", " + g + ", " + b + ")";
 }
+
+// update gaes
