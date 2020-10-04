@@ -1,10 +1,26 @@
 var colors = buatWarna(6);
-
 var squares = document.querySelectorAll(".square");
 var warnaBenar = acakWarna();
 var clueHeader = document.getElementById("clueHeader");
 var pesan = document.querySelector("#pesan");
 var h1 = document.querySelector("h1");
+var resetButton = document.querySelector("#reset");
+
+resetButton.addEventListener("click", function () {
+  // generate all new color
+  colors = buatWarna(6);
+  // pick new random color from array
+  warnaBenar = acakWarna();
+  // ganti color display clue
+  clueHeader.textContent = warnaBenar;
+
+  // loop semua kotak
+  for (var i = 0; i < squares.length; i++) {
+    // rubah warna ke warna yg benar sesuai kunci
+    squares[i].style.backgroundColor = colors[i];
+  }
+  h1.style.backgroundColor = "#232323";
+});
 
 clueHeader.textContent = warnaBenar;
 
@@ -20,6 +36,7 @@ for (var index = 0; index < squares.length; index++) {
     console.log(warnaDipilih, warnaBenar);
     if (warnaBenar === warnaDipilih) {
       pesan.textContent = "benar";
+      resetButton.textContent = "main lagi";
       perubahanWarna(warnaDipilih);
       h1.style.backgroundColor = warnaDipilih;
     } else {
