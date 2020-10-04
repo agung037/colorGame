@@ -1,16 +1,10 @@
-var colors = [
-  "rgb(255, 0, 0)",
-  "rgb(255, 255, 0)",
-  "rgb(0, 255, 0)",
-  "rgb(0, 255, 255)",
-  "rgb(0, 0, 255)",
-  "rgb(255, 0, 255)",
-];
+var colors = buatWarna(6);
 
 var squares = document.querySelectorAll(".square");
 var warnaBenar = acakWarna();
 var clueHeader = document.getElementById("clueHeader");
 var pesan = document.querySelector("#pesan");
+var h1 = document.querySelector("h1");
 
 clueHeader.textContent = warnaBenar;
 
@@ -21,10 +15,13 @@ for (var index = 0; index < squares.length; index++) {
   // menambahkan event listener ke semua squares
   squares[index].addEventListener("click", function (event) {
     // mengetahui warna yg akan di klik
+
     var warnaDipilih = this.style.backgroundColor;
+    console.log(warnaDipilih, warnaBenar);
     if (warnaBenar === warnaDipilih) {
       pesan.textContent = "benar";
       perubahanWarna(warnaDipilih);
+      h1.style.backgroundColor = warnaDipilih;
     } else {
       this.style.backgroundColor = "#232323";
       pesan.textContent = "Coba lagi";
@@ -44,4 +41,26 @@ function perubahanWarna(x) {
 function acakWarna() {
   random = Math.floor(Math.random() * colors.length);
   return colors[random];
+}
+
+function buatWarna(jml) {
+  // buat array
+  var arr = [];
+  // masukan angka acak kedalam array
+  for (var i = 0; i < jml; i++) {
+    // get random color and push to array
+    arr.push(randomColor());
+  }
+  // return array
+  return arr;
+}
+
+function randomColor() {
+  // acak Red 0-255
+  var r = Math.floor(Math.random() * 255 + 1);
+  // acak Green
+  var g = Math.floor(Math.random() * 255 + 1);
+  // acak Blue
+  var b = Math.floor(Math.random() * 255 + 1);
+  return "rgb(" + r + ", " + g + ", " + b + ")";
 }
